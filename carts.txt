@@ -1,0 +1,1 @@
+{UserID : 0, NumItems : 1, Items : [ItemName : BandAid, ItemDescription : To heal, ItemPrice : 1.23, image : bandage.jpg, NumberInStock : 10], Total : 1.23}
