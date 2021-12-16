@@ -134,6 +134,34 @@ class Tests {
 		
 		
 	}
+	//Changes quantity
+		@Test
+		void changeQuantitySameTest() {
+			API api = new API();
+			Item bandaid = new Item(0, "BandAid", "To heal", 1.23, "bandage.jpg", 10);
+			User user = new User(0, "williae2", "password123", "indiana");
+			api.addItem(bandaid);
+			api.addUser(user);
+			api.viewCart(new Request(user.id));
+			try {
+				api.addToCart(new AddRequest(user.id, bandaid.getID()));
+			} catch (Exception e) {
+				//nothing
+			}
+			double before = api.viewCart(new Request(user.id)).total; 
+			try {
+				api.changeQuantity(new QuantityRequest(user.id, bandaid.getID(), 1));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			double after = api.viewCart(new Request(user.id)).total;
+			
+			assertTrue(before == after);
+			
+			
+			
+		}
 	//Change quantity to be more than what is in stock, throw an error
 	@Test
 	void changeQuantityTooMuchTest() {
